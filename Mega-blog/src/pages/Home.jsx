@@ -6,7 +6,7 @@ import { Container, PostCard, Signup } from '../component/index';
 function Home() {
     const [posts, setPosts] = useState([])
     const [loading,setLoading]=useState(true);
-    const user = useSelector((state) => state.auth.userData||{});
+    const user = useSelector((state) => state && state.auth && state.auth.userData||{});
 
      console.log("user is",user);
      
@@ -36,7 +36,7 @@ function Home() {
         );
     }
        
-    if (posts && posts.length === 0) {
+    if (!user || !user.$id) {
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
@@ -45,13 +45,8 @@ function Home() {
                             <h1 className="">
                                {/* Please Lo
                                gin to read The posts .... */}
-                                { !user? (
+                               
                                     <Signup />
-                                ):(
-                                    // <p> <img src={SS} alt="" /></p>
-                                    null
-                                )  }
-                              
                             </h1>
                         </div>
                     </div>

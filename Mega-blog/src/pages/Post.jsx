@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 import { Button, Container } from "../component/index";
-
+import { deletePost_toast } from "./Toast";
 export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
@@ -28,6 +28,7 @@ export default function Post() {
             if (status) {
                 appwriteService.deleteFile(post.featuredImage);
                 navigate("/");
+                deletePost_toast(status);
             }
         });
     };

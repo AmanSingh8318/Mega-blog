@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
  export   const addPost=()=>{
         toast.success('Post Added Successfully')
     }
-  export  const deletePost=()=>{
+  export  const deletePost_toast=()=>{
         toast.error('Post Deleted Successfully')
         }
    export     const updatePost=()=>{
