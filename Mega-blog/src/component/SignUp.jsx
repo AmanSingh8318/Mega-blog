@@ -4,7 +4,12 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import authService from '../appwrite/auth'
 import { login } from '../store/authSlice'
+// import { login as authLogin } from '../store/authSlice.js'
+import { register_Toast } from '../pages/Toast.js'
 import { Button, Input, Logo } from './index.js'
+
+
+
 
 function Signup() {
     const navigate = useNavigate()
@@ -18,8 +23,12 @@ function Signup() {
             const userData = await authService.createAccount(data)
             if (userData) {
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(login(userData));
-                navigate("/")
+                if(userData){
+                    dispatch(login(userData));
+                    navigate("/")
+                } 
+                register_Toast()
+
             }
         } catch (error) {
             setError(error.message)
@@ -39,7 +48,7 @@ function Signup() {
                     Already have an account?&nbsp;
                     <Link
                         to="/login"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                        className=" text-primary transition-all duration-200 hover:underline text-red-700 mt-3 font-semibold  mb-3"
                     >
                         Sign In
                     </Link>
@@ -47,7 +56,7 @@ function Signup() {
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
                 <form onSubmit={handleSubmit(create)}>
-                    <div className='space-y-5'>
+                    <div className='space-y-5 mt-2 content-center'>
                         <Input
                         label="Full Name: "
                         placeholder="Enter your full name"
@@ -59,6 +68,7 @@ function Signup() {
                         label="Email: "
                         placeholder="Enter your email"
                         type="email"
+                        className="ml-5"
                         {...register("email", {
                             required: true,
                             validate: {

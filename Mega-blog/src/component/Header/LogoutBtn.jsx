@@ -1,16 +1,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import authService from '../../appwrite/config';
-
+import service from '../../appwrite/auth';
+import { logut_Toast } from '../../pages/Toast';
 import { logout } from '../../store/authSlice';
-function LogoutBtn() {
 
-    const dispatch=useDispatch();
-    const logoutHnadler=()=>{
-        authService.logout().then(()=>{
-            dispatch(logout());
-        })
-    }
+    function LogoutBtn() {
+        const dispatch=useDispatch();
+        const logoutHnadler=()=>{
+            service.logout().then(()=>{
+              dispatch(logout());
+              logut_Toast();
+              setTimeout(()=>{
+                window.location.reload();
+
+              },2000)
+            })    
+          }
   return (
     <button 
 
@@ -20,4 +25,4 @@ function LogoutBtn() {
   )
 }
 
-export default LogoutBtn
+export default LogoutBtn;

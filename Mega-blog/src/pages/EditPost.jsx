@@ -6,12 +6,12 @@ import { Postform } from '../component';
 
 function EditPost() {
     const [post,setpost]=useState(null);
-    const slug=useParams();
+    const {slug}=useParams();
     const navigate=useNavigate();
     useEffect(()=>{
 
           if (slug) {
-            service.updatePost(slug).then((post)=>{
+            service.getPost(slug).then((post)=>{
                 if (post) {
                     setpost(post)
                 }
@@ -28,7 +28,7 @@ function EditPost() {
     },[])
     return post ? <div className='py-8'>
             <Container>
-                <Postform post={post}/>
+                <Postform post={post} />
             </Container>
     </div>:null
 }

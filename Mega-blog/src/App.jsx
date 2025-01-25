@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import service from "./appwrite/auth"
-import { Footer, Header } from './component/index'
+import authService from "./appwrite/auth"
+import { Footer, Header } from './component'
 import { login, logout } from "./store/authSlice"
-
 
 function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    service.getCurrentUser()
+    authService.getCurrentUser()
     .then((userData) => {
       if (userData) {
         dispatch(login({userData}))
@@ -23,12 +23,12 @@ function App() {
   }, [])
   
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-blue-200'>
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
       <div className='w-full block'>
         <Header />
-        {/* <main> */}
-        {/* TODO:  <Outlet /> */}
-        {/* </main> */}
+        <main>
+        TODO:  <Outlet />
+        </main>
         <Footer />
       </div>
     </div>

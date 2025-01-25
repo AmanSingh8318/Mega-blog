@@ -2,19 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import App from './App.jsx'
-import { AuthLayout, Login } from './component/index.js'
 import './index.css'
 import Home from './pages/Home.jsx'
 import store from './store/store.js'
 
-
+import AuthLayout from './component/AuthLayout.jsx'
 import AddPost from "./pages/AddPost"
-import AllPost from './pages/AllPost'
 import EditPost from "./pages/EditPost"
+import Login from './pages/Login.jsx'
 import Post from "./pages/Post"
 import Signup from './pages/Signup'
 
+import AllPosts from "./pages/AllPost"
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
         {
-            path: "",
+            path: "/",
             element: <Home />,
         },
         {
-            path: "login",
+            path: "/login",
             element: (
                 <AuthLayout authentication={false}>
                     <Login />
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
             element: (
                 <AuthLayout authentication>
                     {" "}
-                    <AllPost />
+                    <AllPosts />
                 </AuthLayout>
             ),
         },
@@ -80,6 +81,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
     <RouterProvider router={router}/>
+    <ToastContainer/>
     </Provider>
   </React.StrictMode>,
 )

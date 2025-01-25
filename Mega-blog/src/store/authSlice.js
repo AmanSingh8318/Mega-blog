@@ -12,10 +12,18 @@ const authslice=createSlice({
     initialState,
     reducers:{
         login:(state,action)=>{
-            state.status=true;
-            state.userData=action.payload;
+                if (action.payload) {
+                    state.status=true;
+                    state.userData=action.payload.userData;
+                 
+                }else {
+                    console.error("Invalid payload",action);
+                    
+                }
+               
+            
         },
-        logout:(state,action)=>{
+        logout:(state)=>{
             state.status=false;
             state.userData=null;
         }

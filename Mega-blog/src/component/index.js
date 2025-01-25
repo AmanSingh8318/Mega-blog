@@ -1,3 +1,4 @@
+import service from '../appwrite/auth';
 import AuthLayout from '../component/AuthLayout';
 import Button from '../component/Button';
 import LogoutBtn from '../component/Header/LogoutBtn';
@@ -23,7 +24,6 @@ export {
     Logo,
     LogoutBtn,
     PostCard,
-    Postform,
-    RTE, Select, Signup
+    Postform, RTE, Select, Signup, service
 };
 

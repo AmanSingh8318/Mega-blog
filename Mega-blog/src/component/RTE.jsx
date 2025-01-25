@@ -12,10 +12,11 @@ function RTE({
             <label  className='inline-block mb-1 pl-1'></label>
                 {label}
                 <Controller
-                name={m=name || "content"}
+                name={name || "content"}
                 control={control}
                 render={({field:{onChange}})=>(
                     <Editor
+                    apiKey="j5sk43bs1cojh9z7jc4t29re4nuelb8mdq9rly2ckrbmjgcs"
                      initialValue={defaultValue}
                      init={{
                         height:500,
@@ -30,7 +31,7 @@ function RTE({
                             '//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Material+Icons',
                             '//www.tinymce.com/css/codepen.min.css'
                    ] }}
-                   onEditorChange={onchange}
+                   onEditorChange={onChange}
                     />
                 )}
                 
